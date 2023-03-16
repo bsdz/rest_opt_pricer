@@ -137,14 +137,14 @@ async def optionpricing_european(request: Request) -> Response:
             # extract market data
             md = mds[0]
             md_tenor_ix = md["Tenors"].index(tenor)
-            md_smile = np.array(md["VolatilitySurface"][md_tenor_ix])
+            md_smile = np.array(md["VolatilitySurface"][md_tenor_ix]) / 100
             md_deltas = np.array(md["SmileCallDeltas"])
             F = md["FuturesPrice"][md_tenor_ix]
 
             # find corresponding strike from vol sfc
 
             # switch from deltas to strikes
-            md_strikes = delta_to_strike(md_deltas, md_smile / 100, T, F, 1)
+            md_strikes = delta_to_strike(md_deltas, md_smile, T, F, 1)
 
             # ensure we are sorted correctly for spline
             ix_sorted = np.argsort(md_strikes)
@@ -156,7 +156,7 @@ async def optionpricing_european(request: Request) -> Response:
                 extrapolate=True,
             )
 
-            sigma = vol_spline(K)
+            sigma = float(vol_spline(K))
 
             r = get_rate()
 

@@ -1,0 +1,22 @@
+[
+    {
+        "Symbol": "BRN",
+        "Tenors": ["Jan24", "Feb24"],
+        "FuturesPrice": [100, 120],
+        "SmileCallDeltas": [0.1, 0.25, 0.5, 0.75, 0.9],
+        "VolatilitySurface": [
+            [50, 49, 48, 49, 50],
+            [51, 50, 49, 50, 51]
+        ]
+    },
+    {
+        "Symbol": "HH",
+        "Tenors": ["Feb24", "Mar24"],
+        "FuturesPrice": [100, 120],
+        "SmileCallDeltas": [0.1, 0.25, 0.5, 0.75, 0.9],
+        "VolatilitySurface": [
+            [50, 49, 48, 49, 50],
+            [51, 50, 49, 50, 51]
+        ]
+    }
+]

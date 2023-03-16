@@ -1,6 +1,6 @@
 # rest_opt_pricer
 
-Price simple options using simple REST API.
+Price vanilla options using simple REST API.
 
 Run following commands. You'll need poetry.
 
@@ -35,20 +35,20 @@ In a separate terminal you can do:
 $ curl http://0.0.0.0:8080/marketdata/get; echo
 {}
 
-# upload json with market data
+# upload json market data
 $ curl -F data=@./market_data.json http://0.0.0.0:8080/marketdata/put; echo
 {"message": "success"}
 
-# check market data uploaded
+# check market data uploaded okay
 $ curl http://0.0.0.0:8080/marketdata/get; echo
 [{"Symbol": "BRN", "Tenors": ["Jan24", "Feb24"], "FuturesPrice": [100, 120], "SmileCallDeltas": [0.1, 0.25, 0.5, 0.75, 0.9], "VolatilitySurface": [[50, 49, 48, 49, 50], [51, 50, 49, 50, 51]]}, {"Symbol": "HH", "Tenors": ["Feb24", "Mar24"], "FuturesPrice": [100, 120], "SmileCallDeltas": [0.1, 0.25, 0.5, 0.75, 0.9], "VolatilitySurface": [[50, 49, 48, 49, 50], [51, 50, 49, 50, 51]]}]
 
 
-# price and option
+# price an option
 $ curl http://0.0.0.0:8080/optionpricing/european/BRN/Jan24/Call/100; echo
 {"premium": 15.951506051334627}
 
-# price and option
+# price an option
 $ curl http://0.0.0.0:8080/optionpricing/european/BRN/Jan24/Put/110; echo
 {"premium": 22.122937284478322}
 
